@@ -1,0 +1,102 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+#root {
+    height: 100%;
+    margin: 0;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+}
+
+header {
+    padding: 1rem;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.col-md-6 {
+    padding: 5%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: hotpink;
+    margin: 1rem;
+}
+
+footer {
+    flex-shrink: 0;
+    padding: 1rem;
+}
+
+/* Error */
+
+.error {
+    color: red;
+}
+
+/* Buttons */
+
+.btn-outline-primary {
+    border-color: hotpink;
+    color: hotpink;
+}
+
+.btn-outline-primary:hover {
+    background-color: hotpink;
+    border-color: hotpink;
+    color: white;
+}
+
+/* Images */
+
+img {
+    height: auto;
+    margin: 1rem auto;
+    max-width: 80%;
+}
+
+.hotpink-round-border {
+    border: 5px solid hotpink;
+    border-radius: 50%;
+}
+
+/* Icons */
+
+.default-avatar {
+    color: hotpink;
+    font-size: 4rem;
+    margin: 1rem auto;
+}
+
+/* Nav Links */
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: black;
+}
+
+.nav-link i {
+    font-size: 2rem;
+}
+
+/* Form */
+
+form {
+    margin: 2rem auto;
+}
