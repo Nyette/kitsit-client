@@ -51,6 +51,7 @@ footer {
 .btn-outline-primary {
     border-color: hotpink;
     color: hotpink;
+    margin: 1rem 0.5rem;
 }
 
 .btn-outline-primary:hover {
@@ -72,14 +73,6 @@ img {
     border-radius: 50%;
 }
 
-/* Icons */
-
-.default-avatar {
-    color: hotpink;
-    font-size: 4rem;
-    margin: 1rem auto;
-}
-
 /* Nav Links */
 
 .nav-link {
@@ -99,4 +92,9 @@ img {
 
 form {
     margin: 2rem auto;
+    width: 50%;
+}
+
+form input {
+    margin: 1rem auto;
 }
