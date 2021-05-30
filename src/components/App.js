@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
 import firebase from "firebase";
-import Header from "./Header";
-import SignIn from "./SignIn";
+import { useAuth0 } from "@auth0/auth0-react";
+import Loading from "./Loading";
 import Dashboard from "./Dashboard";
-import Footer from "./Footer";
+import Home from "./Home";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDzQlUHI885B5mxf9-qPef-S4auHIzdBbs",
@@ -25,55 +18,16 @@ firebase.initializeApp(firebaseConfig);
 
 firebase.analytics();
 
-const uiConfig = {
-  signInFlow: "popup",
-  signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-  ],
-  callbacks: {
-    // Avoid redirects after sign in.
-    signInSuccessWithAuthResult: () => false,
-  },
+const App = () => {
+  const { isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <Loading />;
+  } else {
+    return (
+      <div className="app">{isAuthenticated ? <Dashboard /> : <Home />}</div>
+    );
+  }
 };
-
-function App() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-
-  useEffect(() => {
-    // Make sure we unregister Firebase observers when the component unmounts.
-    const unregisterAuthObserver = firebase
-      .auth()
-      .onAuthStateChanged((user) => {
-        setIsSignedIn(!!user);
-      });
-    return () => unregisterAuthObserver();
-  }, []);
-
-  return (
-    <Router>
-      <div className="app">
-        {isSignedIn ? <Header /> : null}
-        <Switch>
-          <Route path="/dashboard">
-            {isSignedIn ? (
-              <Dashboard firebaseAuth={firebase.auth()} />
-            ) : (
-              <Redirect to="/" />
-            )}
-          </Route>
-          <Route path="/">
-            <SignIn
-              isSignedIn={isSignedIn}
-              uiConfig={uiConfig}
-              firebaseAuth={firebase.auth()}
-            />
-          </Route>
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
-  );
-}
 
 export default App;
