@@ -16,8 +16,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-firebase.analytics();
-
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
