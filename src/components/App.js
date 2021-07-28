@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./Loading";
 import Dashboard from "./Dashboard";
