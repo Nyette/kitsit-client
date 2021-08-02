@@ -98,3 +98,29 @@ form {
 form input {
     margin: 1rem auto;
 }
+
+/* Game */
+
+.game {
+    background: url("../assets/living-room.png") center bottom no-repeat;
+    background-size: cover;
+    color: black;
+    margin: 1rem auto;
+}
+
+canvas {
+    display: block;
+    margin: 1rem auto;
+}
+
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
+.btn-dark {
+    display: block;
+    margin: 1rem auto;
+}

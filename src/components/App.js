@@ -1,7 +1,10 @@
 import firebase from "firebase/app";
 import { useAuth0 } from "@auth0/auth0-react";
+import GameContext from "../context/GameContext";
+import { useReducer } from "react";
+import gameReducer, { initialGame } from "../reducers/gameReducer";
 import Loading from "./Loading";
-import Dashboard from "./Dashboard";
+import Game from "./Game";
 import Home from "./Home";
 
 const firebaseConfig = {
@@ -19,13 +22,25 @@ firebase.initializeApp(firebaseConfig);
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
-  if (isLoading) {
-    return <Loading />;
-  } else {
-    return (
-      <div className="app">{isAuthenticated ? <Dashboard /> : <Home />}</div>
-    );
-  }
+  const [game, setGame] = useReducer(gameReducer, initialGame);
+
+  const render = () => {
+    if (isLoading || game.fetching) {
+      return <Loading />;
+    }
+
+    if (isAuthenticated) {
+      return <Game />;
+    } else {
+      return <Home />;
+    }
+  };
+
+  return (
+    <GameContext.Provider value={{ game, setGame }}>
+      <div className="app">{render()}</div>
+    </GameContext.Provider>
+  );
 };
 
 export default App;
