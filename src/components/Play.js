@@ -5,9 +5,13 @@ import { Stage, Sprite, Text } from "@inlet/react-pixi";
 import idle from "../assets/black-marks10.png";
 
 const Play = () => {
+  // eslint-disable-next-line
   const { user } = useAuth0();
+  // eslint-disable-next-line
   const { game, setGame } = useContext(GameContext);
+  // eslint-disable-next-line
   const [catX, setCatX] = useState(400);
+  // eslint-disable-next-line
   const [catY, setCatY] = useState(300);
   const [message, setMessage] = useState("");
 
