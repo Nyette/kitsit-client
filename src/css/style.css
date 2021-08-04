@@ -108,11 +108,6 @@ form input {
     margin: 1rem auto;
 }
 
-canvas {
-    display: block;
-    margin: 1rem auto;
-}
-
 .main-menu {
     display: flex;
     flex-direction: column;
@@ -123,4 +118,21 @@ canvas {
 .btn-dark {
     display: block;
     margin: 1rem auto;
+}
+
+.play {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-end;
+}
+
+.cat {
+    height: auto;
+    width: 50%;
+}
+
+.message {
+    font-size: 2rem;
 }
