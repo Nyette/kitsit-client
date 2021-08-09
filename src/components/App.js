@@ -25,14 +25,14 @@ const App = () => {
   const [game, setGame] = useReducer(gameReducer, initialGame);
 
   const render = () => {
-    if (isLoading || game.fetching) {
+    if (isLoading) {
       return <Loading />;
-    }
-
-    if (isAuthenticated) {
-      return <Game />;
     } else {
-      return <Home />;
+      if (isAuthenticated) {
+        return <Game />;
+      } else {
+        return <Home />;
+      }
     }
   };
 

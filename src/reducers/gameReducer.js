@@ -2,7 +2,7 @@ export const initialGame = {
   error: null,
   running: false,
   paused: false,
-  fetching: false,
+  fetching: true,
   cat: null,
 };
 
@@ -17,11 +17,6 @@ const gameReducer = (game, action) => {
       return {
         ...game,
         running: true,
-      };
-    case "START_FETCH":
-      return {
-        ...game,
-        fetching: true,
       };
     case "END_FETCH":
       return {

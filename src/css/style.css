@@ -120,6 +120,10 @@ form input {
     margin: 1rem auto;
 }
 
+progress {
+    margin: 1rem auto;
+}
+
 .play {
     align-items: center;
     display: flex;
@@ -128,9 +132,17 @@ form input {
     justify-content: flex-end;
 }
 
+.stats {
+    padding: 1rem;
+}
+
+.stats label {
+    padding: 0 0.5rem 0.5rem 0;
+}
+
 .cat {
     height: auto;
-    width: 50%;
+    width: 35%;
 }
 
 .message {

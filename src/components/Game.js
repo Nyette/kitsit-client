@@ -1,15 +1,23 @@
 import { useContext } from "react";
 import GameContext from "../context/GameContext";
+import Fetching from "./Fetching";
 import MainMenu from "./MainMenu";
 import Play from "./Play";
+import Options from "./Options";
 
 const Game = () => {
   const { game } = useContext(GameContext);
 
   const render = () => {
     if (game.running) {
-      if (!game.paused) {
-        return <Play />;
+      if (game.paused) {
+        return <Options />;
+      } else {
+        if (game.fetching) {
+          return <Fetching />;
+        } else {
+          return <Play />;
+        }
       }
     } else {
       return <MainMenu />;
