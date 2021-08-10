@@ -1,4 +1,5 @@
 import firebase from "firebase/app";
+import "firebase/app-check";
 import { useAuth0 } from "@auth0/auth0-react";
 import GameContext from "../context/GameContext";
 import { useReducer } from "react";
@@ -18,6 +19,10 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+const appCheck = firebase.appCheck();
+
+appCheck.activate("6Lc_PvEbAAAAAMw55GZN2XRMi8BWle6tP6QEZSY5", true);
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
