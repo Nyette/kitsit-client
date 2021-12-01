@@ -3,6 +3,7 @@ export const initialGame = {
   running: false,
   paused: false,
   fetching: true,
+  saving: false,
   cat: null,
 };
 
@@ -28,6 +29,7 @@ const gameReducer = (game, action) => {
       return {
         ...game,
         paused: true,
+        cat: action.data,
       };
     case "RESUME":
       return {
@@ -37,7 +39,12 @@ const gameReducer = (game, action) => {
     case "SAVE":
       return {
         ...game,
-        cat: action.data,
+        saving: true,
+      };
+    case "END_SAVE":
+      return {
+        ...game,
+        saving: false,
       };
     case "EXIT":
       return initialGame;
