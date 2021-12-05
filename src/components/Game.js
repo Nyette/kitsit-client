@@ -3,24 +3,29 @@ import GameContext from "../context/GameContext";
 import Fetching from "./Fetching";
 import MainMenu from "./MainMenu";
 import Play from "./Play";
+import Create from "./Create";
 import Options from "./Options";
 
 const Game = () => {
   const { game } = useContext(GameContext);
 
   const render = () => {
-    if (game.running) {
-      if (game.paused) {
-        return <Options />;
-      } else {
-        if (game.fetching) {
-          return <Fetching />;
-        } else {
-          return <Play />;
-        }
-      }
+    if (game.fetching) {
+      return <Fetching />;
     } else {
-      return <MainMenu />;
+      if (game.running) {
+        if (game.paused) {
+          return <Options />;
+        } else {
+          if (game.cat) {
+            return <Play />;
+          } else {
+            return <Create />;
+          }
+        }
+      } else {
+        return <MainMenu />;
+      }
     }
   };
 

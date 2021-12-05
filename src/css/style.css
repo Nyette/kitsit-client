@@ -124,6 +124,14 @@ progress {
     margin: 1rem auto;
 }
 
+.create {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
 .play {
     align-items: center;
     display: flex;

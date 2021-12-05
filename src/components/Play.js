@@ -1,14 +1,21 @@
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
 import { useContext, useState, useEffect } from "react";
 import GameContext from "../context/GameContext";
-import idle from "../assets/black-marks10.png";
 
 const Play = () => {
   const { game, setGame } = useContext(GameContext);
 
   const [happiness, setHappiness] = useState(game.cat.happiness);
+
+  // eslint-disable-next-line
+  const [furPattern, setFurPattern] = useState(game.cat.furPattern);
+
+  // eslint-disable-next-line
+  const [frame, setFrame] = useState("10");
+
+  // eslint-disable-next-line
+  const [imagePath, setImagePath] = useState(
+    require("../assets/" + furPattern + frame + ".png").default
+  );
 
   useEffect(() => {
     if (happiness >= 5) {
@@ -27,24 +34,23 @@ const Play = () => {
     }
   };
 
-  const silentlySaveThenPause = async () => {
-    try {
-      const firebaseUser = firebase.auth().currentUser;
-      await firebase.firestore().collection("cats").doc(firebaseUser.uid).set({
-        happiness: happiness,
-        owner_id: firebaseUser.uid,
-      });
-      setGame({ type: "PAUSE" });
-    } catch (e) {
-      setGame({
-        type: "CATCH_ERROR",
-        data: e,
-      });
-    }
-  };
-
   return (
     <div className="play">
+      <button
+        className="btn btn-dark btn-lg"
+        onClick={() => {
+          setGame({
+            type: "PAUSE",
+            data: {
+              ...game.cat,
+              happiness: happiness,
+              furPattern: furPattern,
+            },
+          });
+        }}
+      >
+        Options
+      </button>
       <div className="stats">
         <label htmlFor="happiness">Happiness</label>
         <meter
@@ -57,10 +63,12 @@ const Play = () => {
           value={happiness}
         ></meter>
       </div>
-      <img className="cat" src={idle} alt="cat" onClick={increaseHappiness} />
-      <button className="btn btn-dark btn-lg" onClick={silentlySaveThenPause}>
-        Options
-      </button>
+      <img
+        className="cat"
+        src={imagePath}
+        alt="cat"
+        onClick={increaseHappiness}
+      />
     </div>
   );
 };
